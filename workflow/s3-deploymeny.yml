@@ -1,0 +1,37 @@
+name: CI-CD Pipeline
+
+on:
+  #triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branch: [ "main" ]
+
+jobs:
+  ci-job:
+   runs-on: ubuntu-latest
+
+   steps:
+     - name: copy the code to github hosted runner
+       uses: actions/checkout@v4
+     
+     - name: verify files
+       run: |
+         echo "list the file"
+         ls
+    
+     - name: validate index.html exist or not
+       run: |
+         if [ ! -f index.html ]; then echo "index.html not availble " 
+           exit 1
+         f1
+
+      - name: uploading index.html as artifacts
+        uses: actions/upload-artifacts@v4
+        with:
+          name: website-file
+          path: |
+            index.html
+          
+          
+          
+           
+       
